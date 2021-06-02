@@ -1,22 +1,32 @@
-package com.meli.springchallenge.dto;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
+package com.meli.springchallenge.model;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Objects;
 
-public class NewPostDTO {
+public class Post {
 
     private Integer userId;
     private Integer id_post;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date date;
-    private ProductDTO detail;
+    private Product detail;
     private Integer category;
     private Double price;
 
-    public NewPostDTO() {
+    public Post(){
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Post post = (Post) o;
+        return id_post.equals(post.id_post);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id_post);
     }
 
     public Integer getUserId() {
@@ -43,11 +53,11 @@ public class NewPostDTO {
         this.date = date;
     }
 
-    public ProductDTO getDetail() {
+    public Product getDetail() {
         return detail;
     }
 
-    public void setDetail(ProductDTO detail) {
+    public void setDetail(Product detail) {
         this.detail = detail;
     }
 
@@ -66,4 +76,5 @@ public class NewPostDTO {
     public void setPrice(Double price) {
         this.price = price;
     }
+
 }

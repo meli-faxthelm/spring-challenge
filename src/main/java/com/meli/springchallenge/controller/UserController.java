@@ -17,31 +17,29 @@ public class UserController {
 
 
     @PostMapping("{userId}/follow/{userIdToFollow}")
-    public ResponseEntity<Void> followUserById(@PathVariable Integer userId, @PathVariable Integer userIdToFollow) throws Exception {
-        if(userService.follow(userId, userIdToFollow)) {
-            return ResponseEntity.status(200).build();
-        }
-        return ResponseEntity.status(400).build();
+    public ResponseEntity<Void> followUserById(@PathVariable Integer userId, @PathVariable Integer userIdToFollow) {
+        userService.follow(userId, userIdToFollow);
+        return ResponseEntity.status(200).build();
     }
 
     @GetMapping("{userId}/followers/count")
-    public ResponseEntity<UserFollowersCountDTO> followersCount(@PathVariable Integer userId) throws Exception {
+    public ResponseEntity<UserFollowersCountDTO> followersCount(@PathVariable Integer userId) {
         return ResponseEntity.status(200).body(userService.getFollowersCount(userId));
     }
 
 
     @GetMapping("{userId}/followers/list")
-    public ResponseEntity<UserFollowersListDTO> followersList(@PathVariable Integer userId) throws Exception {
+    public ResponseEntity<UserFollowersListDTO> followersList(@PathVariable Integer userId) {
         return ResponseEntity.status(200).body(userService.getFollowersList(userId));
     }
 
     @GetMapping("{userId}/followed/list")
-    public ResponseEntity<UserFollowedListDTO> followedList(@PathVariable Integer userId) throws Exception {
+    public ResponseEntity<UserFollowedListDTO> followedList(@PathVariable Integer userId) {
         return ResponseEntity.status(200).body(userService.getFollowedList(userId));
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Void> createDataTest() throws Exception {
+    public ResponseEntity<Void> createDataTest() {
         userService.createTestSet();
         return ResponseEntity.status(200).build();
     }

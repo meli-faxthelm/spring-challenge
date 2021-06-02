@@ -6,11 +6,11 @@ import com.meli.springchallenge.dto.UserFollowersListDTO;
 
 public interface UserService {
 
-    boolean follow(Integer userId, Integer userIdToFollow) throws Exception;
-    UserFollowersCountDTO getFollowersCount(Integer userId) throws Exception;
-    UserFollowersListDTO getFollowersList(Integer userId) throws Exception;
-    UserFollowedListDTO getFollowedList(Integer userId) throws Exception;
+    void follow(Integer userId, Integer userIdToFollow);
+    UserFollowersCountDTO getFollowersCount(Integer userId);
+    UserFollowersListDTO getFollowersList(Integer userId);
+    UserFollowedListDTO getFollowedList(Integer userId);
 
 
-    void createTestSet() throws Exception;
+    void createTestSet();
 }

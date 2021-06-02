@@ -6,6 +6,9 @@ import com.meli.springchallenge.dto.UserBasicDTO;
 import com.meli.springchallenge.dto.UserFollowedListDTO;
 import com.meli.springchallenge.dto.UserFollowersCountDTO;
 import com.meli.springchallenge.dto.UserFollowersListDTO;
+import com.meli.springchallenge.exception.user.UserCantBeFollowedException;
+import com.meli.springchallenge.exception.user.UserAlreadyFollowingException;
+import com.meli.springchallenge.exception.user.UserCantFollowSelfException;
 import com.meli.springchallenge.model.User;
 import com.meli.springchallenge.model.UserBasic;
 import com.meli.springchallenge.repository.UserRepository;
@@ -22,23 +25,27 @@ public class UserServiceImpl implements UserService {
     UserRepository userRepository;
 
     @Override
-    public boolean follow(Integer userId, Integer userIdToFollow) throws Exception {
+    public void follow(Integer userId, Integer userIdToFollow) {
         User user = userRepository.findUserByUserId(userId);
         User userToFollow = userRepository.findUserByUserId(userIdToFollow);
 
-        if (!user.isSeller() && userToFollow.isSeller()) {
+        if (userToFollow.isSeller()) {
+            if( userId == userIdToFollow){
+                throw new UserCantFollowSelfException();
+            }
             if(!user.getFollowedSet().contains(userToFollow.toUserBasic())) {
                 user.getFollowedSet().add(new UserBasic(userToFollow.getUserId(), userToFollow.getUserName()));
                 userToFollow.getFollowerSet().add(new UserBasic(user.getUserId(),user.getUserName()));
                 userRepository.save(user);
-                return true;
+                return;
             }
+            throw new UserAlreadyFollowingException();
         }
-        return false;
+        throw new UserCantBeFollowedException();
     }
 
     @Override
-    public UserFollowersCountDTO getFollowersCount(Integer userId) throws Exception {
+    public UserFollowersCountDTO getFollowersCount(Integer userId) {
         // TODO verify that we are only looking into sellers (isSeller)
         User user = userRepository.findUserByUserId(userId);
         UserFollowersCountDTO userFollowersCountDTO = new UserFollowersCountDTO();
@@ -51,7 +58,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserFollowersListDTO getFollowersList(Integer userId) throws Exception {
+    public UserFollowersListDTO getFollowersList(Integer userId) {
         User user = userRepository.findUserByUserId(userId);
         UserFollowersListDTO userFollowersListDTO = new UserFollowersListDTO(userId, user.getUserName());
         List<UserBasicDTO> followerList = user.getFollowerSet().stream().map(UserBasic::toUserBasicDTO)
@@ -61,7 +68,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserFollowedListDTO getFollowedList(Integer userId) throws Exception {
+    public UserFollowedListDTO getFollowedList(Integer userId) {
         User user = userRepository.findUserByUserId(userId);
         UserFollowedListDTO userFollowedListDTO = new UserFollowedListDTO(userId, user.getUserName());
         List<UserBasicDTO> followedList = user.getFollowedSet().stream().map(UserBasic::toUserBasicDTO)
@@ -72,7 +79,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public void createTestSet() throws Exception {
+    public void createTestSet() {
         User consumer1 = new User(1,"meli1", false);
         User consumer2 = new User(2,"meli2", false);
         User consumer3 = new User(3,"meli3", false);

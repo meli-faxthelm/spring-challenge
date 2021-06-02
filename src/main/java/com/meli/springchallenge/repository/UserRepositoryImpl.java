@@ -3,6 +3,8 @@ package com.meli.springchallenge.repository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.exc.MismatchedInputException;
+import com.meli.springchallenge.exception.user.UserNotFoundException;
 import com.meli.springchallenge.model.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.ResourceUtils;
@@ -24,18 +26,18 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User findUserByUserId(Integer userId) throws Exception {
+    public User findUserByUserId(Integer userId) {
         User user = userDatabase.get(userId);
 
         if( user == null) {
-            throw new Exception("Usuário não encontrado");
+            throw new UserNotFoundException();
         }
 
         return user;
     }
 
     @Override
-    public void save(User userToSave) throws Exception {
+    public void save(User userToSave) {
         userDatabase.put(userToSave.getUserId(), userToSave);
         write();
     }
@@ -52,13 +54,14 @@ public class UserRepositoryImpl implements UserRepository {
 
             userMap = objectMapper.readValue(file, typeRef);
 
+        } catch (MismatchedInputException e) {
+            return new HashMap<Integer, User>();
         } catch (Exception e) {
             e.printStackTrace();
-            return new HashMap<Integer,User>();
         }
         return userMap;
     }
-    public void write() throws Exception {
+    public void write() {
         String jsonString;
 
         try {
