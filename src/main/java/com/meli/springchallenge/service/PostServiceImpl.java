@@ -48,8 +48,8 @@ public class PostServiceImpl implements PostService {
         followed.forEach(seller -> sellersIds.add(seller.getUserId()));
         List<Set<Post>> sellerPosts = postRepository.findPostsByUserIdBulk(sellersIds);
 
-        sellerPosts.stream().forEach(list -> list.forEach(post ->
-        }));
+//        sellerPosts.stream().forEach(list -> list.forEach(post ->
+ //       }));
 
         return postFeedDto;
     }
