@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/products")
 public class PostController {
@@ -21,8 +23,8 @@ public class PostController {
     }
 
     @GetMapping("followed/{userId}/list")
-    public ResponseEntity<PostFeedDTO> getUserPostFeed(@PathVariable Integer userId) {
-        return ResponseEntity.status(200).body(postService.getUserPostsByUserId(userId));
+    public ResponseEntity<PostFeedDTO> getUserPostFeed(@PathVariable Integer userId, @RequestParam Optional<String> order) {
+        return ResponseEntity.status(200).body(postService.getUserPostsByUserId(userId, order));
     }
 
     @PostMapping("/create")

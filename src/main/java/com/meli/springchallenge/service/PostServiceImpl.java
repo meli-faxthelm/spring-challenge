@@ -4,6 +4,7 @@ import com.meli.springchallenge.converter.DTOConverter;
 import com.meli.springchallenge.dto.NewPostDTO;
 import com.meli.springchallenge.dto.PostFeedDTO;
 import com.meli.springchallenge.dto.PostFeedPostDTO;
+import com.meli.springchallenge.dto.UserBasicDTO;
 import com.meli.springchallenge.exception.user.UserNotFoundException;
 import com.meli.springchallenge.model.Post;
 import com.meli.springchallenge.model.User;
@@ -38,7 +39,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public PostFeedDTO getUserPostsByUserId(Integer userId) {
+    public PostFeedDTO getUserPostsByUserId(Integer userId, Optional<String> order) {
         PostFeedDTO postFeedDto = new PostFeedDTO();
         postFeedDto.setUserId(userId);
 
@@ -49,7 +50,7 @@ public class PostServiceImpl implements PostService {
         List<Set<Post>> sellerPosts = postRepository.findPostsByUserIdBulk(sellersIds);
 
         List<Post> feedPosts = new ArrayList<>();
-        LocalDate twoWeekAgo = LocalDate.now().minusWeeks(2);
+        LocalDate twoWeekAgo = LocalDate.now().minusWeeks(2).minusDays(1);
         sellerPosts.forEach(list -> list.forEach(post -> {
             if (post.getDate().toInstant()
                     .atZone(ZoneId.systemDefault())
@@ -61,6 +62,12 @@ public class PostServiceImpl implements PostService {
         List<PostFeedPostDTO> postFeedPostDTO = feedPosts.stream().map(Post::toPostFeedPostDTO).collect(Collectors.toList());
 
         postFeedPostDTO.sort(Comparator.comparing(PostFeedPostDTO::getDate));
+
+        if(order.isPresent()) {
+            if(order.get().equals("date_desc")) {
+                postFeedPostDTO.sort(Comparator.comparing(PostFeedPostDTO::getDate).reversed());
+            }
+        }
 
         postFeedDto.setPosts(postFeedPostDTO);
         return postFeedDto;
