@@ -1,5 +1,7 @@
 package com.meli.springchallenge.model;
 
+import com.meli.springchallenge.dto.PostFeedPostDTO;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -28,6 +30,17 @@ public class Post {
     public int hashCode() {
         return Objects.hash(id_post);
     }
+
+    public PostFeedPostDTO toPostFeedPostDTO(){
+        PostFeedPostDTO postFeedPostDTO = new PostFeedPostDTO();
+        postFeedPostDTO.setId_post(this.id_post);
+        postFeedPostDTO.setDate(this.date);
+        postFeedPostDTO.setDetail(this.detail.toProductDTO());
+        postFeedPostDTO.setCategory(this.category);
+        postFeedPostDTO.setPrice(this.price);
+        return postFeedPostDTO;
+    }
+
 
     public Integer getUserId() {
         return userId;

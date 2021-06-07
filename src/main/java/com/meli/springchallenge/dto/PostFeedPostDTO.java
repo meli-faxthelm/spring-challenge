@@ -4,9 +4,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
 
-public class NewPostDTO {
+public class PostFeedPostDTO {
 
-    private Integer userId;
     private Integer id_post;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date date;
@@ -14,16 +13,7 @@ public class NewPostDTO {
     private Integer category;
     private Double price;
 
-    public NewPostDTO() {
-
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public PostFeedPostDTO() {
     }
 
     public Integer getId_post() {

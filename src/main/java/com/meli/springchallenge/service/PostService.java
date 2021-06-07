@@ -7,4 +7,6 @@ public interface PostService {
 
     void createPost(NewPostDTO newPostDTO);
     PostFeedDTO getUserPostsByUserId(Integer userId);
+
+    void createTestSet();
 }

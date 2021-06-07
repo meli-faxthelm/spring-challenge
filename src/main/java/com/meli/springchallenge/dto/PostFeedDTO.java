@@ -1,12 +1,12 @@
 package com.meli.springchallenge.dto;
 
-import com.meli.springchallenge.model.Product;
+import com.meli.springchallenge.model.Post;
 
 import java.util.List;
 
 public class PostFeedDTO {
     private Integer userId;
-    private List<ProductDTO> posts;
+    private List<PostFeedPostDTO> posts;
 
     public PostFeedDTO() {
 
@@ -20,11 +20,11 @@ public class PostFeedDTO {
         this.userId = userId;
     }
 
-    public List<ProductDTO> getPosts() {
+    public List<PostFeedPostDTO> getPosts() {
         return posts;
     }
 
-    public void setPosts(List<ProductDTO> posts) {
+    public void setPosts(List<PostFeedPostDTO> posts) {
         this.posts = posts;
     }
 }

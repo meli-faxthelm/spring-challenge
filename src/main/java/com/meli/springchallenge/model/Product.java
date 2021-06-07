@@ -1,5 +1,7 @@
 package com.meli.springchallenge.model;
 
+import com.meli.springchallenge.dto.ProductDTO;
+
 public class Product {
     private Integer product_id;
     private String productName;
@@ -14,6 +16,17 @@ public class Product {
 
     public Integer getProduct_id() {
         return product_id;
+    }
+
+    public ProductDTO toProductDTO(){
+        ProductDTO productDTO = new ProductDTO();
+        productDTO.setProduct_id(this.product_id);
+        productDTO.setProductName(this.productName);
+        productDTO.setType(this.type);
+        productDTO.setBrand(this.brand);
+        productDTO.setColor(this.color);
+        productDTO.setNotes(this.notes);
+        return productDTO;
     }
 
     public void setProduct_id(Integer product_id) {

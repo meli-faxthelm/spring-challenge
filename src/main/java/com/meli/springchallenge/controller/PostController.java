@@ -24,4 +24,10 @@ public class PostController {
     public ResponseEntity<PostFeedDTO> getUserPostFeed(@PathVariable Integer userId) {
         return ResponseEntity.status(200).body(postService.getUserPostsByUserId(userId));
     }
+
+    @PostMapping("/create")
+    public ResponseEntity<Void> createTestSet() {
+        postService.createTestSet();
+        return ResponseEntity.status(200).build();
+    }
 }

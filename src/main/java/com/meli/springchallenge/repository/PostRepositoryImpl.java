@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 import com.meli.springchallenge.exception.post.PostIdAlreadyExistsException;
 import com.meli.springchallenge.model.Post;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.ResourceUtils;
 
@@ -14,6 +13,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Repository
 public class PostRepositoryImpl implements PostRepository{
@@ -51,8 +51,9 @@ public class PostRepositoryImpl implements PostRepository{
 
     @Override
     public List<Set<Post>> findPostsByUserIdBulk(List<Integer> userIdList) {
-        List<Set<Post>> returnList = new ArrayList<Set<Post>>();
-        userIdList.forEach(userId -> returnList.add(postDatabase.get(userId)));
+        List<Set<Post>> returnList;
+        returnList = userIdList.stream().map(postDatabase::get).filter(Objects::nonNull).collect(Collectors.toList());
+
         return returnList;
     }
 

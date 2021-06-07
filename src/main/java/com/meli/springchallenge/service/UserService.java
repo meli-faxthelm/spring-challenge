@@ -10,6 +10,7 @@ public interface UserService {
     UserFollowersCountDTO getFollowersCount(Integer userId);
     UserFollowersListDTO getFollowersList(Integer userId);
     UserFollowedListDTO getFollowedList(Integer userId);
+    void unfollow(Integer userId, Integer userIdToUnfollow);
 
 
     void createTestSet();
