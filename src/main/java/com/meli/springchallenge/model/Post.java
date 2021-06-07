@@ -18,6 +18,15 @@ public class Post {
 
     }
 
+    public Post(Integer userId, Integer id_post, Date date, Product detail, Integer category, Double price) {
+        this.userId = userId;
+        this.id_post = id_post;
+        this.date = date;
+        this.detail = detail;
+        this.category = category;
+        this.price = price;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -14,6 +14,15 @@ public class Product {
 
     }
 
+    public Product(Integer product_id, String productName, String type, String brand, String color, String notes) {
+        this.product_id = product_id;
+        this.productName = productName;
+        this.type = type;
+        this.brand = brand;
+        this.color = color;
+        this.notes = notes;
+    }
+
     public Integer getProduct_id() {
         return product_id;
     }

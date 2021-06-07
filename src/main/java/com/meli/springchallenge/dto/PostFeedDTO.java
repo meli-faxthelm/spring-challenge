@@ -1,6 +1,5 @@
 package com.meli.springchallenge.dto;
 
-import com.meli.springchallenge.model.Post;
 
 import java.util.List;
 

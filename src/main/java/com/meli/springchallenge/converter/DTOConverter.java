@@ -1,10 +1,11 @@
 package com.meli.springchallenge.converter;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.meli.springchallenge.dto.NewPostDTO;
+import com.meli.springchallenge.dto.NewPromoPostDTO;
 import com.meli.springchallenge.dto.ProductDTO;
 import com.meli.springchallenge.model.Post;
 import com.meli.springchallenge.model.Product;
+import com.meli.springchallenge.model.PromoPostDetail;
 
 import java.util.Date;
 
@@ -20,6 +21,28 @@ public class DTOConverter {
         post.setPrice(newPostDTO.getPrice());
 
         return post;
+    }
+
+    public static Post newPromoPostDTOToPost(NewPromoPostDTO newPromoPostDTO) {
+        Post post = new Post();
+        post.setUserId(newPromoPostDTO.getUserId());
+        post.setId_post(newPromoPostDTO.getId_post());
+        post.setDate(newPromoPostDTO.getDate());
+        post.setDetail(DTOConverter.productDTOToProduct(newPromoPostDTO.getDetail()));
+        post.setCategory(newPromoPostDTO.getCategory());
+        post.setPrice(newPromoPostDTO.getPrice());
+
+        return post;
+    }
+
+    public static PromoPostDetail newPromoPostDTOToPromoPostDetail(NewPromoPostDTO newPromoPostDTO) {
+        PromoPostDetail promoPostDetail = new PromoPostDetail();
+        promoPostDetail.setUserId(newPromoPostDTO.getUserId());
+        promoPostDetail.setId_post(newPromoPostDTO.getId_post());
+        promoPostDetail.setHasPromo(newPromoPostDTO.isHasPromo());
+        promoPostDetail.setDiscount(newPromoPostDTO.getDiscount());
+
+        return promoPostDetail;
     }
 
     public static Product productDTOToProduct(ProductDTO productDTO) {

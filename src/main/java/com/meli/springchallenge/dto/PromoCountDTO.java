@@ -1,16 +1,11 @@
 package com.meli.springchallenge.dto;
 
-public class UserBasicDTO {
+public class PromoCountDTO {
     private Integer userId;
     private String userName;
+    private Integer promoproducts_count;
 
-    public UserBasicDTO(Integer userId, String userName) {
-        this.userId = userId;
-        this.userName = userName;
-    }
-
-    public UserBasicDTO() {
-
+    public PromoCountDTO() {
     }
 
     public Integer getUserId() {
@@ -27,5 +22,13 @@ public class UserBasicDTO {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public Integer getPromoproducts_count() {
+        return promoproducts_count;
+    }
+
+    public void setPromoproducts_count(Integer promoproducts_count) {
+        this.promoproducts_count = promoproducts_count;
     }
 }

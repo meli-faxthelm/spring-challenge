@@ -1,6 +1,7 @@
 package com.meli.springchallenge.exception;
 
 import com.meli.springchallenge.exception.post.PostIdAlreadyExistsException;
+import com.meli.springchallenge.exception.post.PostPromoDiscountTooBigException;
 import com.meli.springchallenge.exception.user.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -43,6 +44,10 @@ public class ResponseExceptionHandler {
 
     @ExceptionHandler(PostIdAlreadyExistsException.class)
     protected ResponseEntity<String> handlePostIdAlreadyExistsException(PostIdAlreadyExistsException exception) {
+        return ResponseEntity.status(exception.getStatus()).body(exception.getReason());
+    }
+    @ExceptionHandler(PostPromoDiscountTooBigException.class)
+    protected ResponseEntity<String> handlePostPromoDiscountTooBigException(PostPromoDiscountTooBigException exception) {
         return ResponseEntity.status(exception.getStatus()).body(exception.getReason());
     }
 
