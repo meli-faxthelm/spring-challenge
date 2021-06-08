@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "54d81ab8-8fe9-48a7-a6d7-4bb98e49d620",
+		"_postman_id": "c8949de7-2b5a-43c4-85d5-a78222de181a",
 		"name": "Spring-Challenge",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -51,7 +51,7 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/users/1/follow/8",
+					"raw": "localhost:8080/users/1/follow/6",
 					"host": [
 						"localhost"
 					],
@@ -60,7 +60,7 @@
 						"users",
 						"1",
 						"follow",
-						"8"
+						"6"
 					]
 				}
 			},
@@ -72,14 +72,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/users/7/followers/count/",
+					"raw": "localhost:8080/users/6/followers/count/",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
 						"users",
-						"7",
+						"6",
 						"followers",
 						"count",
 						""
@@ -94,14 +94,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/users/7/followers/list",
+					"raw": "localhost:8080/users/6/followers/list",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
 						"users",
-						"7",
+						"6",
 						"followers",
 						"list"
 					]
@@ -137,7 +137,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"userId\": 6,\n    \"id_post\": 11,\n    \"date\": \"05-06-2021\",\n    \"detail\":\n    {\n        \"product_id\": 13,\n        \"productName\": \"Produto Novo\",\n        \"type\": \"Balanço\",\n        \"brand\": \"Racer\",\n        \"color\": \"Marrom\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 90,\n    \"price\": 129.00\n}",
+					"raw": "{\n    \"userId\": 6,\n    \"id_post\": 33,\n    \"date\": \"08-06-2021\",\n    \"detail\":\n    {\n        \"product_id\": 13,\n        \"productName\": \"Mouse Wireless\",\n        \"type\": \"Periférico\",\n        \"brand\": \"Logitech\",\n        \"color\": \"Cinza\",\n        \"notes\": \"Pilha inclusa\"\n    },\n    \"category\": 60,\n    \"price\": 129.00\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -185,7 +185,7 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/users/1/unfollow/7",
+					"raw": "localhost:8080/users/1/unfollow/6",
 					"host": [
 						"localhost"
 					],
@@ -194,7 +194,7 @@
 						"users",
 						"1",
 						"unfollow",
-						"7"
+						"6"
 					]
 				}
 			},
@@ -233,14 +233,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/users/6/followed/list?order=name_desc",
+					"raw": "localhost:8080/users/1/followed/list?order=name_desc",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
 						"users",
-						"6",
+						"1",
 						"followed",
 						"list"
 					],
@@ -288,7 +288,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"userId\": 6,\n    \"id_post\": 12,\n    \"date\": \"06-06-2021\",\n    \"detail\":\n    {\n        \"product_id\": 14,\n        \"productName\": \"PROMO Produto Novo\",\n        \"type\": \"Balanço\",\n        \"brand\": \"Racer\",\n        \"color\": \"Marrom\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 90,\n    \"price\": 99.00,\n    \"hasPromo\": true,\n    \"discount\": 0.25\n}",
+					"raw": "{\n    \"userId\": 6,\n    \"id_post\": 12,\n    \"date\": \"08-06-2021\",\n    \"detail\":\n    {\n        \"product_id\": 14,\n        \"productName\": \"Mouse de bolinha\",\n        \"type\": \"Periférico\",\n        \"brand\": \"A4Tech\",\n        \"color\": \"Azul\",\n        \"notes\": \"Compatível com windows 7\"\n    },\n    \"category\": 90,\n    \"price\": 99.00,\n    \"hasPromo\": true,\n    \"discount\": 0.25\n}",
 					"options": {
 						"raw": {
 							"language": "json"
