@@ -7,6 +7,8 @@ import com.meli.springchallenge.model.Post;
 import com.meli.springchallenge.model.Product;
 import com.meli.springchallenge.model.PromoPostDetail;
 
+import java.util.Date;
+
 public class DTOConverter {
 
     public static Post newPostDTOToPost(NewPostDTO newPostDTO) {

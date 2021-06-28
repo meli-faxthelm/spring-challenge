@@ -1,5 +1,9 @@
 package com.meli.springchallenge.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.util.Date;
+
 public class PromoPostListItemDTO extends PostFeedPostDTO{
 
     private boolean hasPromo;
